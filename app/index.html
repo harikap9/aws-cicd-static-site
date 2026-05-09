@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AWS CI/CD Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="hero">
+        <p class="eyebrow">AWS CI/CD Pipeline</p>
+        <h1>Shipped automatically with CodePipeline.</h1>
+        <p class="summary">
+          This site is deployed from GitHub to Amazon S3 and delivered through
+          CloudFront. Every push to the main branch can trigger a fresh deploy.
+        </p>
+        <div class="status">
+          <span class="status-dot"></span>
+          <span id="build-message">Pipeline ready</span>
+        </div>
+      </section>
+
+      <section class="steps" aria-label="Pipeline steps">
+        <article>
+          <span>1</span>
+          <h2>Source</h2>
+          <p>CodePipeline watches the GitHub repository.</p>
+        </article>
+        <article>
+          <span>2</span>
+          <h2>Build</h2>
+          <p>CodeBuild reads buildspec.yml and prepares the release.</p>
+        </article>
+        <article>
+          <span>3</span>
+          <h2>Deploy</h2>
+          <p>Files are synced to S3 and CloudFront is refreshed.</p>
+        </article>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

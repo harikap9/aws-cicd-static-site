@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "No dependencies to install for this static website."
+  pre_build:
+    commands:
+      - echo "Checking required environment variables..."
+      - test -n "$WEBSITE_BUCKET_NAME"
+      - test -n "$CLOUDFRONT_DISTRIBUTION_ID"
+      - test -f app/index.html
+  build:
+    commands:
+      - echo "Shipping files to S3..."
+      - aws s3 sync app/ "s3://$WEBSITE_BUCKET_NAME" --delete
+      - echo "Refreshing CloudFront cache..."
+      - aws cloudfront create-invalidation --distribution-id "$CLOUDFRONT_DISTRIBUTION_ID" --paths "/*"
+  post_build:
+    commands:
+      - echo "Deployment complete."
